@@ -12,32 +12,37 @@ This gives you enough information to compute pass times for up to several weeks,
     accurate as you go into the future. This is because the orbit of the ISS decays unpredictably over time and because
     station controllers periodically move the station to higher and lower orbits for docking, re-boost, and debris avoidance.</p>
   <p>Input</p>
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>Longitude</mat-label>
-      <input name="longitude" matInput placeholder="-180 to 180">
+      <input matInput placeholder="-180 to 180" required formControlName="longitude" >
       <mat-hint>The longitude of the place to predict passes</mat-hint>
+      <mat-error *ngIf="form.invalid">{{getLonErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Latitude</mat-label>
-      <input  matInput name="latitude" placeholder="-80 to 80">
+      <input  matInput placeholder="-80 to 80" required formControlName="latitude">
       <mat-hint>The latitude of the place to predict passes</mat-hint>
+      <mat-error *ngIf="form.invalid">{{getLatitudeErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Altitude</mat-label>
-      <input name="altitude" matInput placeholder="0 to 10 000">
+      <input name="altitude" matInput placeholder="0 to 10 000" formControlName="altitude">
       <mat-hint>The altitude of the place to predict passes</mat-hint>
+      <mat-error *ngIf="form.invalid">{{getAltitudeErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Number</mat-label>
-      <input name="number" matInput placeholder=" to 100">
+      <input name="number" matInput placeholder=" to 100" formControlName="number">
       <mat-hint>The number of passes to return</mat-hint>
+      <mat-error *ngIf="form.invalid">{{getNumberErrorMessage()}}</mat-error>
     </mat-form-field>
+
     <p>
-      <button mat-raised-button type="submit">Confirm</button>
+      <button mat-raised-button type="submit" [disabled]="!form.valid">Confirm</button>
     </p>
   </form>
 </div>

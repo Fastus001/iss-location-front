@@ -12,7 +12,7 @@ import { MapComponent } from './components/map/map.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BadrequestComponent } from './components/badrequest/badrequest.component';
 import { FormComponent } from './components/form/form.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   {path: 'map', component: MapComponent},
@@ -40,6 +40,7 @@ const appRoutes: Routes = [
       appRoutes
     ),
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
