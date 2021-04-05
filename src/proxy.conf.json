@@ -1,0 +1,11 @@
+{
+  "/form/*": {
+    "target": "http://api.open-notify.org",
+    "secure": false,
+    "pathRewrite": {
+      "^/form": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
