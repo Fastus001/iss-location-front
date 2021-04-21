@@ -1,6 +1,6 @@
 {
   "/form/*": {
-    "target": "http://api.open-notify.org",
+    "target": "http://localhost:8080/iss/api/passTimes",
     "secure": false,
     "pathRewrite": {
       "^/form": ""

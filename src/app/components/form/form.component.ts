@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Passes} from '../../dto/passes';
-import {PassesService} from "../../services/passes.service";
+import {PassesService} from '../../services/passes.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class FormComponent implements OnInit {
 
 
 
-  constructor(private stationService: PassesService) { }
+  constructor(private passesService: PassesService) { }
 
   ngOnInit(): void {
     const onlyNumsDoubles = Validators.pattern('^-?\\d{1,3}[.,]?\\d{0,}');
@@ -35,7 +35,7 @@ export class FormComponent implements OnInit {
     this.model.altitude = this.form.controls.altitude.value;
     this.model.number = this.form.controls.number.value;
     console.log(this.model);
-    this.stationService.getPasses(this.model).subscribe((x)=>{
+    this.passesService.getPasses(this.model).subscribe((x) => {
       console.log(x);
     });
   }
