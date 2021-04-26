@@ -1,23 +1,24 @@
-import { Component, AfterViewInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy} from '@angular/core';
 import * as L from 'leaflet';
-import {IssPosition, StationService} from '../../services/station.service';
-import {Subscription} from 'rxjs';
 import {Circle, Marker, PanOptions} from 'leaflet';
+import {StationService} from '../../services/station.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements AfterViewInit, OnDestroy {
   private map;
   private iss: Marker;
   private isscirc: Circle;
   private options: PanOptions =  new class implements PanOptions {
-    animate: boolean = true;
+    animate = true;
   };
 
   private loadSubscription: Subscription;
+  private interval;
 
   constructor(private stationService: StationService) { }
 
@@ -25,15 +26,15 @@ export class MapComponent implements AfterViewInit {
     this.stationNow();
     this.initMap();
 
-    setInterval(()=>this.stationNow(),5000);
+    this.interval = setInterval(() => this.stationNow(), 5000);
   }
 
 
-  stationNow(){
+  stationNow(): void {
     this.loadSubscription = this.stationService.getStationLocation().subscribe((issNow) => {
       console.log(issNow);
-      let lat = issNow.iss_position.latitude;
-      let lon = issNow.iss_position.longitude;
+      const lat = issNow.iss_position.latitude;
+      const lon = issNow.iss_position.longitude;
       this.iss.setLatLng([lat, lon]);
       this.isscirc.setLatLng([lat, lon]);
 
@@ -49,22 +50,27 @@ export class MapComponent implements AfterViewInit {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
-    var ISSIcon = this.getIssIcon();
+    const ISSIcon = this.getIssIcon();
 
-    this.iss = L.marker([0, 0],{icon: ISSIcon}).addTo(this.map);
-    this.isscirc = L.circle([0,0], 1500e3,{color: "#c22", opacity: 0.3, weight:1, fillColor: "#c22", fillOpacity: 0.1})
+    this.iss = L.marker([0, 0], {icon: ISSIcon}).addTo(this.map);
+    this.isscirc = L.circle([0, 0], 1500e3, {color: '#c22', opacity: 0.3, weight: 1, fillColor: '#c22', fillOpacity: 0.1})
                     .addTo(this.map);
 
     tiles.addTo(this.map);
   }
 
 
-  private getIssIcon() {
+  private getIssIcon(): any {
     return L.icon({
       iconUrl: 'assets/iss_icon.png',
       iconSize: [50, 30],
       iconAnchor: [25, 15],
       popupAnchor: [50, 25],
     });
+  }
+
+  ngOnDestroy(): void {
+   clearInterval(this.interval);
+   console.log('destroy!!');
   }
 }
