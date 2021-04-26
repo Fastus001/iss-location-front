@@ -13,7 +13,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   private map;
   private iss: Marker;
   private isscirc: Circle;
-  private options: PanOptions =  new class implements PanOptions {
+  private options: PanOptions = new class implements PanOptions {
     animate = true;
   };
 

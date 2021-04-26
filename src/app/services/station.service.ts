@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 export interface IssPosition {
   latitude: number;
@@ -16,13 +17,12 @@ export interface IssNow{
   providedIn: 'root'
 })
 export class StationService {
-  private ISS_NOW_URL = 'http://api.open-notify.org/iss-now.json';
 
   constructor(private http: HttpClient) { }
 
   getStationLocation(): Observable<IssNow>{
     const httpHeaders = new HttpHeaders();
     httpHeaders.append('Accept', 'application/json');
-    return this.http.get<IssNow>(this.ISS_NOW_URL, {headers: httpHeaders});
+    return this.http.get<IssNow>(environment.ISS_NOW_URL, {headers: httpHeaders});
   }
 }

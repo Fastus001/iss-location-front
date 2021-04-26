@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  endPointPassesURL: 'http://localhost:8080/api/iss/passTimes'
+  endPointPassesURL: 'http://localhost:8080/api/iss/passTimes',
+  ISS_NOW_URL: 'http://api.open-notify.org/iss-now.json',
+  astrosURL: 'http://api.open-notify.org/astros.json'
 };
 
 /*
