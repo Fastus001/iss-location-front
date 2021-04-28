@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Passes} from '../../dto/passes';
 import {PassesService} from '../../services/passes.service';
-
+import {PassesResponse} from '../../dto/passesresponse';
 
 @Component({
   selector: 'app-form',
@@ -13,8 +13,7 @@ export class FormComponent implements OnInit {
 
   public form: FormGroup;
   public model = new Passes();
-
-
+  public passesResponse: PassesResponse;
 
   constructor(private passesService: PassesService) { }
 
@@ -29,14 +28,15 @@ export class FormComponent implements OnInit {
     );
   }
 
-  onSubmit(): void {
+  onSubmit(): any {
     this.model.longitude = this.form.controls.longitude.value;
     this.model.latitude = this.form.controls.latitude.value;
     this.model.altitude = this.form.controls.altitude.value;
     this.model.number = this.form.controls.number.value;
     console.log(this.model);
     this.passesService.getPasses(this.model).subscribe((x) => {
-      console.log(x);
+      this.passesResponse = x;
+      console.log(x.response);
     });
   }
 

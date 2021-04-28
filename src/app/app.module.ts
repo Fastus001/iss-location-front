@@ -15,6 +15,7 @@ import {BadrequestComponent} from './components/badrequest/badrequest.component'
 import {FormComponent} from './components/form/form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AstrosComponent} from './components/astros/astros.component';
+import {PassesComponent} from './components/passes/passes.component';
 
 const appRoutes: Routes = [
   {path: 'map', component: MapComponent},
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     MapComponent,
     BadrequestComponent,
     FormComponent,
-    AstrosComponent
+    AstrosComponent,
+    PassesComponent
   ],
   imports: [
     BrowserModule,
