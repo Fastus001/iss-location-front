@@ -1,14 +1,25 @@
-<div *ngIf="passesResponse">
+<div>
 
-  <p>
-    {{passesResponse.response[0].duration}}
-    {{passesResponse.request.latitude}}
-    {{passesResponse.request.longitude}}
-    {{passesResponse.request.altitude}}
-    {{passesResponse.request.passes}}
-    {{passesResponse.request.datetime}}
-    <br>
-  </p>
+  <table mat-table [dataSource]="responses" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Num. </th>
+      <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef>Duration</th>
+      <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="risetime">
+      <th mat-header-cell *matHeaderCellDef>Rise time </th>
+      <td mat-cell *matCellDef="let element"> {{element.risetime*1000 | date: 'medium'}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
 </div>
 

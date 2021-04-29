@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {PassesResponse} from '../../dto/passesresponse';
+import {Responses} from '../../dto/responses';
 
 @Component({
   selector: 'app-passes',
@@ -8,12 +8,9 @@ import {PassesResponse} from '../../dto/passesresponse';
 })
 export class PassesComponent{
 
-  @Input() passesResponse: PassesResponse;
+  @Input() responses: Responses;
+  displayedColumns: string[] = ['position', 'duration', 'risetime'];
 
   constructor() { }
-
-  show(): void{
-    console.log(this.passesResponse);
-  }
 
 }

@@ -1,8 +1,8 @@
-import {Response} from './response';
+import {Responses} from './Responses';
 import {RequestDTO} from './requestDTO';
 
 export interface PassesResponse {
   message: string;
   request: RequestDTO;
-  response: Response [];
+  response: Responses [];
 }

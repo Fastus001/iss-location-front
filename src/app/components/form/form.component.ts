@@ -33,7 +33,6 @@ export class FormComponent implements OnInit {
     this.model.latitude = this.form.controls.latitude.value;
     this.model.altitude = this.form.controls.altitude.value;
     this.model.number = this.form.controls.number.value;
-    console.log(this.model);
     this.passesService.getPasses(this.model).subscribe((x) => {
       this.passesResponse = x;
       console.log(x.response);

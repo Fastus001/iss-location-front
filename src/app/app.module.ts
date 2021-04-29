@@ -16,6 +16,7 @@ import {FormComponent} from './components/form/form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AstrosComponent} from './components/astros/astros.component';
 import {PassesComponent} from './components/passes/passes.component';
+import {MatTableModule} from "@angular/material/table";
 
 const appRoutes: Routes = [
   {path: 'map', component: MapComponent},
@@ -35,20 +36,21 @@ const appRoutes: Routes = [
     AstrosComponent,
     PassesComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatToolbarModule,
-    HttpClientModule,
-    RouterModule.forRoot(
-      appRoutes
-    ),
-    ReactiveFormsModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatToolbarModule,
+        HttpClientModule,
+        RouterModule.forRoot(
+            appRoutes
+        ),
+        ReactiveFormsModule,
+        FormsModule,
+        MatTableModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
