@@ -20,6 +20,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   private loadSubscription: Subscription;
   private interval;
 
+
   constructor(private stationService: StationService) { }
 
   ngAfterViewInit(): void {
@@ -57,6 +58,9 @@ export class MapComponent implements AfterViewInit, OnDestroy {
                     .addTo(this.map);
 
     tiles.addTo(this.map);
+    this.map.on('click', e => {
+      console.log(e.latlng); // get the coordinates
+    });
   }
 
 
@@ -73,4 +77,6 @@ export class MapComponent implements AfterViewInit, OnDestroy {
    clearInterval(this.interval);
    console.log('destroy!!');
   }
+
+
 }
