@@ -1,0 +1,10 @@
+table {
+  margin: auto;
+  width: 100%;
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+}

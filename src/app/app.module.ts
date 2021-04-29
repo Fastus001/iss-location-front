@@ -16,7 +16,7 @@ import {FormComponent} from './components/form/form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AstrosComponent} from './components/astros/astros.component';
 import {PassesComponent} from './components/passes/passes.component';
-import {MatTableModule} from "@angular/material/table";
+import {MatTableModule} from '@angular/material/table';
 
 const appRoutes: Routes = [
   {path: 'map', component: MapComponent},

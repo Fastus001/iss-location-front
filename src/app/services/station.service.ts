@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {AstronautsInSpace} from '../dto/astronautsInSpace';
+import {tap} from 'rxjs/operators';
 
 export interface IssPosition {
   latitude: number;
@@ -13,6 +15,7 @@ export interface IssNow{
   timestamp: number;
   iss_position: IssPosition;
 }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,5 +27,10 @@ export class StationService {
     const httpHeaders = new HttpHeaders();
     httpHeaders.append('Accept', 'application/json');
     return this.http.get<IssNow>(environment.ISS_NOW_URL, {headers: httpHeaders});
+  }
+
+  getAstronauts(): Observable<AstronautsInSpace> {
+    return this.http.get<AstronautsInSpace>(environment.astrosURL)
+      .pipe(tap(console.log));
   }
 }
