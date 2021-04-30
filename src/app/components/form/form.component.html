@@ -11,7 +11,7 @@
     accurate as you go into the future. This is because the orbit of the ISS decays unpredictably over time and because
     station controllers periodically move the station to higher and lower orbits for docking, re-boost, and debris avoidance.</p>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" >
       <mat-label>Longitude</mat-label>
       <input matInput placeholder="-180 to 180" required formControlName="longitude" >
       <mat-hint>The longitude of the place to predict passes</mat-hint>
@@ -20,7 +20,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Latitude</mat-label>
-      <input  matInput placeholder="-80 to 80" required formControlName="latitude">
+      <input  matInput placeholder="-80 to 80" required formControlName="latitude" >
       <mat-hint>The latitude of the place to predict passes</mat-hint>
       <mat-error *ngIf="form.invalid">{{getLatitudeErrorMessage()}}</mat-error>
     </mat-form-field>

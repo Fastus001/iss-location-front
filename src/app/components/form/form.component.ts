@@ -26,6 +26,15 @@ export class FormComponent implements OnInit {
         number: new FormControl('', [Validators.min(1) , Validators.max(100), Validators.pattern('\\d{1,3}') ])
       }
     );
+    if (this.passesService.longitude){
+      this.form.setValue(
+        {
+          longitude: this.passesService.latitude,
+          latitude: this.passesService.longitude,
+          altitude: 100,
+          number: 5
+        });
+    }
   }
 
   onSubmit(): any {
@@ -38,8 +47,6 @@ export class FormComponent implements OnInit {
       console.log(x.response);
     });
   }
-
-
 
   public getLonErrorMessage(): string {
     if (this.form.hasError('required', 'longitude')){

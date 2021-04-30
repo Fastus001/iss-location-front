@@ -9,6 +9,8 @@ import {PassesResponse} from '../dto/passesResponse';
   providedIn: 'root'
 })
 export class PassesService {
+  public latitude: number;
+  public longitude: number;
 
   constructor(private http: HttpClient) { }
 
